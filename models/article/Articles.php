@@ -1,0 +1,74 @@
+<?php
+
+namespace app\models\article;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%qx_articles}}".
+ *
+ * @property integer $a_id
+ * @property string $subject
+ * @property string $content
+ * @property integer $auid
+ * @property string $author
+ * @property integer $created_at
+ * @property integer $publish_time
+ * @property integer $a_status
+ * @property integer $c_id
+ * @property integer $review
+ * @property integer $is_hot
+ * @property integer $a_sort
+ * @property string $a_s_key
+ * @property string $a_s_desc
+ * @property string $a_s_title
+ * @property string $tags
+ */
+class Articles extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%qx_articles}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['subject', 'content'], 'required'],
+            [['a_id', 'auid', 'created_at', 'publish_time', 'a_status', 'c_id', 'review', 'is_hot', 'a_sort'], 'integer'],
+            [['content'], 'string'],
+            [['subject', 'author', 'a_s_key', 'a_s_desc', 'a_s_title', 'tags'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'a_id' => '文章编号',
+            'subject' => '文章标题',
+            'content' => '文章内容',
+            'auid' => '作者id',
+            'author' => '作者呢称',
+            'created_at' => '创建时间',
+            'publish_time' => '发布时间',
+            'a_status' => '文章状态',
+            'c_id' => '文章所述频道',
+            'review' => '评论次数',
+            'is_hot' => 'Is Hot',
+            'a_sort' => '文章排序',
+            'a_s_key' => '文章的seo keywords',
+            'a_s_desc' => '文章的seo description',
+            'a_s_title' => '文章的seo title',
+            'tags' => '文章搜索tag',
+        ];
+    }
+}
