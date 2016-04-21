@@ -23,6 +23,9 @@ $this->beginPage();
     #page-header .container{
         width: 100%;
     }
+    #page-header .navbar-brand{
+        line-height: 30px;
+    }
     #page-header{
         border-radius: 0px;
         margin-bottom: 0px;
@@ -43,7 +46,7 @@ $this->beginPage();
     }
     #leftnav li{
         list-style: none;
-        border-radius: 1px;
+        border-radius: 0px;
     }
     #leftnav .list-group{
      margin-bottom: 0px;
@@ -68,9 +71,10 @@ $this->beginPage();
     }
 
   @media  only screen (max-width:1450px){
-        #left-nav{
-            width:20px;
-        }
+    body{
+       background: red;
+    }
+
   }
  </style>
 <body>

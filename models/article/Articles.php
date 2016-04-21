@@ -61,7 +61,7 @@ class Articles extends \yii\db\ActiveRecord
             'created_at' => '创建时间',
             'publish_time' => '发布时间',
             'a_status' => '文章状态',
-            'c_id' => '文章所述频道',
+            'c_id' => '文章所属频道',
             'review' => '评论次数',
             'is_hot' => 'Is Hot',
             'a_sort' => '文章排序',
@@ -71,4 +71,15 @@ class Articles extends \yii\db\ActiveRecord
             'tags' => '文章搜索tag',
         ];
     }
+
+    /**
+     *
+     */
+    public function getArticlesByChannel($cid,$limit=0,$offset=0){
+       $query=self::find()->where(["c_id"=>$cid,"a_status"=>1]);
+          $query->select("subject,a_id,auid,author,created_at,publish_time,review,tags,content");
+        if($limit)$query->limit($limit)->offset($offset);
+        return $query->asArray()->all();
+    }
+
 }

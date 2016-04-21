@@ -1,0 +1,38 @@
+<?php
+/**
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ */
+
+namespace yii\i18n;
+
+use yii\base\Event;
+
+/**
+ * MissingTranslationEvent represents the parameter for the [[MessageSource::EVENT_MISSING_TRANSLATION]] event.
+ *
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
+ */
+class MissingTranslationEvent extends Event
+{
+    /**
+     * @var string the messages to be translated. An event handler may use this to provide a fallback translation
+     * and set [[translatedMessage]] if possible.
+     */
+    public $message;
+    /**
+     * @var string the translated messages. An event handler may overwrite this property
+     * with a translated version of [[messages]] if possible. If not set (null), it means the messages is not translated.
+     */
+    public $translatedMessage;
+    /**
+     * @var string the category that the messages belongs to
+     */
+    public $category;
+    /**
+     * @var string the language ID (e.g. en-US) that the messages is to be translated to
+     */
+    public $language;
+}

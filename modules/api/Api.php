@@ -17,6 +17,9 @@ class Api extends \yii\base\Module
      */
     public function init()
     {
+        $this->modules=[
+            "article"=>"app\modules\api\modules\article\Article"
+        ];
         parent::init();
 
         // custom initialization code goes here

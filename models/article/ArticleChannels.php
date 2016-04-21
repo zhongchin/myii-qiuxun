@@ -2,7 +2,9 @@
 
 namespace app\models\article;
 
+use Composer\Command\SelfUpdateCommand;
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "{{%qx_article_channels}}".
@@ -18,6 +20,8 @@ use Yii;
  */
 class ArticleChannels extends \yii\db\ActiveRecord
 {
+
+    public static  $settingIndexChannel="qx_setting_index_channel";
     /**
      * @inheritdoc
      */
@@ -57,6 +61,25 @@ class ArticleChannels extends \yii\db\ActiveRecord
             'path' => '分类path',
         ];
     }
+
+    /**
+     * 获取首页的文章频道
+     * @param int $limit
+     * @return array
+     */
+
+    public function getIndexArticleChannel($limit=10){
+         $query= new Query();
+         $query->from(self::tableName()." AS a")
+             ->rightJoin(self::$settingIndexChannel." AS b","a.c_id=b.c_id");
+         $query->where(["a.c_status"=>1]);
+         $query->orderBy(["b.display_order"=>SORT_ASC]);
+         $query->limit($limit)->offset(0);
+        return $query->all();
+
+    }
+
+
     public static function getAllArticleChannel($cId=0){
         $query=self::find()->where(["c_status"=>1]);
 
